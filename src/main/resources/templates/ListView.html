@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>ListView</title>
+</head>
+<body>
+<span class="message" th:text="${message}"></span>
+<form action="#" th:action="@{/ListView}" th:object="${listForm}" method="post">
+  <p>商品一覧</p>
+  <table border="1">
+  	<tr>
+  		<td th:text="商品名"></td>
+  		<td th:text="価格"></td>
+ 	</tr>
+ 	<tr th:each="HashMap : ${itemList}">
+ 		<td th:text="${HashMap.name}"></td>
+ 		<td th:text="${HashMap.price}"></td>
+ 	</tr>
+ </table>
+
+ 商品名:
+ <select name="name">
+ <option  th:each="HashMap : ${itemList}" th:value="${HashMap.name}" th:text="${HashMap.name}"></option>
+ </select>
+ 個数:
+ <select name="num">
+ <option value=0>なし</option>
+ <option value=1>1</option>
+ <option value=2>2</option>
+ <option value=3>3</option>
+ </select>
+
+  <input type="submit" value="カートに追加" />
+</form>
+
+  <p>カートの中身</p>
+  <table border="1">
+  	<tr>
+  		<td th:text="商品名"></td>
+  		<td th:text="個数"></td>
+  		<td th:text="価格"></td>
+ 	</tr>
+ 	<tr th:each="HashMap : ${cart}">
+ 		<td th:text="${HashMap.name}"></td>
+ 		<td th:text="${HashMap.num}"></td>
+ 		<td th:text="${HashMap.price}"></td>
+ 	</tr>
+ </table>
+
+</body>
+</html>

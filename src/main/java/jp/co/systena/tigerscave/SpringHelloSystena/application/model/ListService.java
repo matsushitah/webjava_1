@@ -29,7 +29,7 @@ public class ListService {
 
   public List addCart(List cart, HashMap order) {
 
-    Boolean add_flg = true;
+    Boolean addFlg = true;
     String name = (String) order.get("name");
     int num = (int)order.get("num");
     int price = 0;
@@ -56,17 +56,15 @@ public class ListService {
         addCartItem.put("num", addItemNum);
         addCartItem.put("price", addItemPrice);
         cart.set(i, addCartItem);
-        add_flg = false;
+        addFlg = false;
         break;
       }
     }
 
-    if (add_flg == true) {
+    if (addFlg == true) {
       order.put("price", price);
       cart.add(order);
     }
-
-    System.out.println(cart);
 
     return cart;
 
